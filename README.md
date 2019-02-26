@@ -1,19 +1,14 @@
 # Unicorn PE
 Unicorn PE is an [unicorn](https://github.com/unicorn-engine/unicorn) based instrumentation project/framework designed to emulate code execution for windows PE files, especially packed ones.
 
-## Limitation 
-For now, only x64 PE files are supported.
+## Feature
+Dump PE image from emu-memory into file, fix import table, especially packed ones.
 
-Some packed user-mode program might be executed incorrectly, since the environment is not fully emulated. (PEB TEB or some other stuffs)
+Partial support for exception. (only #DB and #BP)
 
-I would be grateful if you figure out how to emulate them correctly.
+Show disasm for all instructions that is being executed.
 
-No support for exception for now. (the Unicorn project does not support intercepting exception and determining what kind of exception/fault it is)
-
-## TODO 
-Feature: Unpacking (VMProtect / Safengine) protected driver files. -- 99%
-
-Feature: Exception, SEH / VEH (wait for unicorn to support) -- 50%
+## TODO
 
 Feature: x86 (low priority) -- 0%
 
@@ -29,6 +24,10 @@ Build project "unicorn_pe" as x64/Release or x64/Debug. (No x86 support for now)
 
 unicorn_pe (filename or filepath) [-k for kernel mode driver emulation] [-disasm for displaying disasm]
 
+## Programming
+
+...to be documented
+
 ## Snapshots
 
 ### original driver
@@ -42,6 +41,9 @@ unicorn_pe (filename or filepath) [-k for kernel mode driver emulation] [-disasm
 
 ### vmprotect goes back to original entry point
 ![4](https://github.com/hzqst/unicorn_pe/raw/master/img/img4.png)
+
+### vmprotect packed DLL, full user-mode emulation.
+![4](https://github.com/hzqst/unicorn_pe/raw/master/img/img5.png)
 
 ## License
 This software is released under the MIT License, see LICENSE.
